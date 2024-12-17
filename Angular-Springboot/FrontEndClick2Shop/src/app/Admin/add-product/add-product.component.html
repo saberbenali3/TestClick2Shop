@@ -1,0 +1,90 @@
+<div class="container mt-5">
+  <div class="mb-3">
+    <a routerLink="/" class="btn btn-primary btn-sm">
+      <i class="bi bi-house-door"></i> Retour à l'Accueil
+    </a>
+  </div>
+  <div class="mb-3">
+    <a routerLink="/admin/" class="btn btn-primary btn-sm">
+      <i class="bi bi-house-door"></i> Retour à l'administartion
+    </a>
+  </div>
+    <div class="card">
+      <div class="card-header bg-primary text-white">
+        <h4>{{Add}} Product</h4>
+      </div>
+      <div class="card-body">
+        <!-- Messages de succès ou d'erreur -->
+        <div *ngIf="successMessage" class="alert alert-success">{{ successMessage }}</div>
+        <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+        <!-- Formulaire -->
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+          <!-- Product Name -->
+          <div class="mb-3">
+            <label for="title" class="form-label">Product Name</label>
+            <input 
+              type="text" 
+              id="title" 
+              class="form-control" 
+              formControlName="title" 
+              placeholder="Enter product name" 
+            />
+            <div *ngIf="productForm.get('title')?.invalid && productForm.get('title')?.touched" class="text-danger">
+              Product name is required.
+            </div>
+          </div>
+              <div class="form-group">
+      <label for="productCategory">Catégorie</label>
+      <select
+      
+        id="category"
+        class="form-control"
+        formControlName="category"
+      >
+      <option value="" disabled selected>Sélectionnez la catégorie du produit</option>
+        <option value="Télévision">Télévision</option>
+        <option value="Barres de son">Barres de son</option>
+        <option value="Vidéoprojecteurs">Vidéoprojecteurs</option>
+      </select>
+    </div>
+    
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="availability" class="form-label">availability</label>
+            <input 
+              id="availability" 
+              class="form-control" 
+              rows="3" 
+              formControlName="availability" 
+              placeholder="availability"/>
+          </div>
+          
+          <!-- Price -->
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input 
+              type="number" 
+              id="price" 
+              class="form-control" 
+              formControlName="price" 
+              placeholder="Enter product price" 
+            />
+            <div *ngIf="productForm.get('price')?.invalid && productForm.get('price')?.touched" class="text-danger">
+              Price must be a positive number.
+            </div>
+          </div>
+          
+          <!-- Submit Button -->
+          <button 
+            type="submit" 
+            class="btn btn-success w-100" 
+            [disabled]="productForm.invalid || isSubmitting">
+            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm"></span>
+            {{Add}} Product
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  

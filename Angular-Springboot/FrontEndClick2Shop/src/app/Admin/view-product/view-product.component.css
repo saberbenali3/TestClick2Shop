@@ -1,0 +1,8 @@
+.card {
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  .img-fluid {
+    max-height: 250px;
+    object-fit: cover;
+  }

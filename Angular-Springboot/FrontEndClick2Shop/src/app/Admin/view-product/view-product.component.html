@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <div *ngIf="product" class="card shadow-sm">
+      <div class="row g-0">
+ 
+        <div class="col-md-8">
+          <div class="card-body">
+            <h2 class="card-title">{{ product.title }}</h2>
+            <p class="card-text"><strong>Category:</strong> {{ product.category }}</p>
+            <p class="card-text">
+                <strong>Availability:</strong>
+                <span 
+                  [ngClass]="{
+                    'text-danger': product.availability === 'out_of_stock',
+                    'text-success': product.availability !== 'out_of_stock'
+                  }">
+                  {{ product.availability }}
+                </span>
+              </p>            <p class="card-text">
+              <strong>Price:</strong> <span class="text-success">{{ product.price | currency }}</span>
+            </p>
+            <button class="btn btn-primary me-2" (click)="goBack()">Back</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div *ngIf="!product" class="text-center mt-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p>Loading product details...</p>
+    </div>
+  </div>
+  
