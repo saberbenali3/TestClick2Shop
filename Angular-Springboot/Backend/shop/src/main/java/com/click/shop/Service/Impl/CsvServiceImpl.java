@@ -42,7 +42,7 @@ public class CsvServiceImpl implements CsvService {
 
                 csvReader.readNext();
 
-                while ((values = csvReader.readNext()) != null && i<5000) {
+                while ((values = csvReader.readNext()) != null ) {
                     i++;
                     String category = null;
                     if (values[3] != null) {
